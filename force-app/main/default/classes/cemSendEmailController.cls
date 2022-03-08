@@ -377,10 +377,10 @@ system.debug('***** search Term: ' + searchTerm + ' ==== selectedIds: ' + select
         system.debug('filterValue'+filterValue);
         List<EmailTemplate> emailTemplateList = new List<EmailTemplate>();
         if(filterValue=='myLightTemplates'){
-            emailTemplateList=[Select Id,Body,Subject,HtmlValue,Name,FolderName,Description,UiType from EmailTemplate where UiType='SFX' AND OwnerId=:loggedInUserID];
+            emailTemplateList=[Select Id,Body,Subject,HtmlValue,Name,FolderName,Description,UiType from EmailTemplate where (UiType='SFX') AND (OwnerId=:loggedInUserID) AND (RelatedEntityType = 'Contact' OR RelatedEntityType = 'Lead')];
         }
         if(filterValue=='allLightTemplates'){
-            emailTemplateList=[Select Id,Body,Subject,HtmlValue,Name,FolderName,Description,UiType from EmailTemplate where UiType='SFX'];
+            emailTemplateList=[Select Id,Body,Subject,HtmlValue,Name,FolderName,Description,UiType from EmailTemplate where (UiType='SFX') AND (RelatedEntityType = 'Contact' OR RelatedEntityType = 'Lead')];
         }
         if(filterValue=='myClassicTemplates'){
             emailTemplateList=[Select Id,Body,Subject,HtmlValue,Name,FolderName,Description,UiType from EmailTemplate where UiType='Aloha' /*AND OwnerId=:loggedInUserID*/];
